@@ -1,70 +1,79 @@
-import os 
-os.system("clear || cls ")
+import os
+os.system("cls || clear")
 
-soma = 0
-valor_pagar = 0
-valor_com_acrescimo = 0
+comanda = 0
+contador = 0
+comida= ""
 
-while True: 
-
-    print("""
-    =============== MENU ========================    
-    código \t prato \t\t\t valor
-    1\t pizza  \t\t R$ 50,00
-    2\t lasanha \t\t R$ 40,00
-    3\t churrasco \t\t R$ 30,00
-    4\t bife com fritas \t R$ 25,00
-    5\t feijoada  \t\t R$ 20,00
-    6\t hamburguer \t\t R$ 15,00
-    7\t queijo coalho \t\t R$ 10,00
-    """)
-
-    opcao = int(input("Digite o numero da opção desejada: "))
-
-    match opcao:  
-        case 1:
-            prato = "pizza"
-            preço = 50
+while True:
+    cardapio = int(input("""
+Selecione o prato que deseja:
+Código \t Prato \t\t Preço
+1 \t Lasanha \t R$25                    
+2 \t Feijoada \t R$25                     
+3 \t batata frita \t R$18                     
+4 \t Pizza \t\t R$23                     
+5 \t strogonoff \t R$30                   
+6 \t frango frito \t R$20                    
+7 \t hamburguer \t R$15                
+"""))   
+    
+    match cardapio:
+        case 1 :
+            comanda += 25
+            contador += 1
+            prato = "Lasanha"
         case 2:
-            prato = "lasanha"
-            preço = 40 
+            prato = "Feijoada"
+            comanda += 25
+            contador += 1
         case 3:
-            prato = "churrasco"  
-            preço = 30
+            prato =  "batata frita"
+            contador += 1
+            comanda += 18
         case 4:
-            prato = "bife com fritas"
-            preço = 25   
+            prato = "Pizza"
+            contador += 1
+            comanda += 23
         case 5:
-            prato = "feijoada"
-            preço = 20
+            prato = "strogonoff"
+            contador += 1
+            comanda += 30 
         case 6:
-            prato = "hamburger"
-            preço = 15
-        case 7:    
-            prato = "queijo coalho"
-            preço = 10 
-            if repetir:
-                soma += preço
-                repetir = input("Deseja escolher outro prato ? \nDigite 'S' ou 'N' : "). lower()
-                if repetir == 'N': 
-                    break
-        case 0:
-            forma_de_pagamento = int(input("""
-            1- a vista                               
-            2- cartão de crédito                              
-            digite a forma de pagamento: """))
-            
-            if forma_de_pagamento:
-                 # aplicando desconto de 10%
-                 desconto = soma * 0.10
-                 valor_pagar = soma - desconto
+            prato = "frango frito"
+            contador += 1
+            comanda += 120
+        case 7:
+            prato = "hamburguer"
+            contador += 1
+            comanda += 3
+        case _:
+            print("codigo invalido.")
 
-            elif forma_de_pagamento:
-                # aplicando acrescimo de 10%
-                acrescimo = soma * 0.10
-                valor_pagar = acrescimo 
-                print("Valor com acrescimo de 10%: ", valor_com_acrescimo)
+    comida += prato + " "
+  
+    permissao = int(input("Deseja pedir mais um prato? Digite '0' para encerrar a comanda, caso queira prosseguir, digite '1': "))
+    if permissao == 0:
+        break
 
-
-
-   
+pagamento = int(input("Qual a forma de pagamento ? 1 para a vista e 2 para cartão de credito: "))
+    
+match pagamento:
+    case 1:
+        pagamento = "Á vista"
+        desconto = comanda * 0.1
+        desconto2 = comanda - comanda * 0.1
+        print(f" Valor da comanda {comanda}")
+        print(f"\nSeu desconto foi de: {desconto}")
+        print(f"total a pagar : {desconto2} ")
+        print(f"Forma de pagemento: {pagamento}")
+    case 2:
+        pagamento = "Cartão de crédito"
+        acrescimo = comanda * 0.1
+        acrescimo2 = comanda + (comanda * 0.1)
+        print(f"\nValor total comanda {comanda}")
+        print(f"Seu acrescimo foi de: {acrescimo}")
+        print(f"total a pagar: {acrescimo2} ")
+        print(f"Forma de pagemento: {pagamento}")
+        
+print(comida)
